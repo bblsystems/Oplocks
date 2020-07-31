@@ -89,5 +89,20 @@ namespace OpLocks
             About about = new About();
             about.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            this.updateKey(@"HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\MRXSmb\Parameters",
+                "OplocksDisabled", 0);
+
+            this.updateKey(@"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters",
+                            "EnableOplocks", 1);
+
+            this.updateKey(@"HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters",
+                            "SMB2", 1);
+
+            MessageBox.Show("Registry updated to re-enable oplocks. Please reboot your computer.");
+        }
     }
 }
